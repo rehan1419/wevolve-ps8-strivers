@@ -80,7 +80,7 @@ GET /api/job/all - Get all saved job descriptions
 
 Setup Instructions-----------
 
-Prerequisites----------  
+Prerequisites 
 
 Node.js (v14 or higher)   
 MySQL database    
@@ -128,15 +128,14 @@ npm or yarn package manager
     The server will run on http://localhost:5000
 
 5. Frontend Setup
-    # Navigate to frontend directory
+    
     cd ../frontend
 
-    # Install dependencies
     npm install
 
-    # Start the development server
     npm run dev
-    # Application runs on http://localhost:3000
+    
+    Application runs on http://localhost:3000
 
 
 
