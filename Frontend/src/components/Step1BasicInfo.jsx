@@ -1,4 +1,4 @@
-// Step1BasicInfo.jsx - Updated Colors
+// Step1BasicInfo.jsx 
 export default function Step1BasicInfo({ formData, setFormData }) {
   const industries = [
     "FinTech",

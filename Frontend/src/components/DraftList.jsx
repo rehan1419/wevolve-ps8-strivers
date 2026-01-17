@@ -1,4 +1,4 @@
-// DraftList.jsx - Fixed to Match Image
+// DraftList.jsx 
 import { useEffect, useState } from "react";
 import { fetchDrafts, deleteDraft } from "../api/jobApi";
 import "./DraftList.css";

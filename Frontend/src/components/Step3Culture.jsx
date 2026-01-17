@@ -1,6 +1,5 @@
-// Step3Culture.jsx - With 3D Shadow Effect
+// Step3Culture.jsx
 export default function Step3Culture({ formData, setFormData }) {
-  // 3D Shadow Container Style
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",

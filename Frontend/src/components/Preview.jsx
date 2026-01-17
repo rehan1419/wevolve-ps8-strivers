@@ -1,4 +1,4 @@
-// Preview.jsx - Updated Colors
+// Preview.jsx
 import { useState, useEffect } from "react";
 import { saveDraft, downloadPDF } from "../api/jobApi";
 

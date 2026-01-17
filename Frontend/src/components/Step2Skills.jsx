@@ -1,4 +1,4 @@
-// Step2Skills.jsx - Updated Colors
+// Step2Skills.jsx 
 import { useState, useEffect } from "react";
 
 export default function Step2Skills({ formData, setFormData }) {

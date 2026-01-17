@@ -1,4 +1,4 @@
-// App.jsx - Updated Main Component
+// App.jsx 
 import { useState, useEffect } from "react";
 import { generateJD } from "./api/jobApi";
 import Home from "./pages/Home";
@@ -7,7 +7,7 @@ import Step1BasicInfo from "./components/Step1BasicInfo";
 import Step2Skills from "./components/Step2Skills";
 import Step3Culture from "./components/Step3Culture";
 import Preview from "./components/Preview";
-import DraftList from "./components/Draftlist";
+import DraftList from "./components/DraftList";
 
 export default function App() {
   const [step, setStep] = useState(0);
