@@ -13,14 +13,14 @@ This full-stack application combines a sleek, modern React frontend with a robus
 
 Frontend (React)
 
-Multi-step Form Wizard - Guided 4-step process for job description creation
-Modern UI/UX - Clean, rounded-edge design with gradient accents
-Real-time Preview - Live preview with editing capabilities
-Draft Management - Search, filter, and manage saved drafts
-Responsive Design - Fully responsive across all devices
-Local Storage - Automatic form state persistence
-PDF Export - Download job descriptions as PDF files
-Clipboard Copy - One-click copy to clipboard
+Multi-step Form Wizard - Guided 4-step process for job description creation  
+Modern UI/UX - Clean, rounded-edge design with gradient accents  
+Real-time Preview - Live preview with editing capabilities  
+Draft Management - Search, filter, and manage saved drafts  
+Responsive Design - Fully responsive across all devices  
+Local Storage - Automatic form state persistence  
+PDF Export - Download job descriptions as PDF files       
+Clipboard Copy - One-click copy to clipboard   
 
 Backend (Node.js/Express)
 
@@ -156,4 +156,4 @@ Contributing
     2.Create a feature branch (git checkout -b feature/amazing-feature)
     3.Commit changes (git commit -m 'Add amazing feature')
     4.Push to branch (git push origin feature/amazing-feature)
-    5.Open a Pull Reques
+    5.Open a Pull Request
