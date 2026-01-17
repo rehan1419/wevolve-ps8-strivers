@@ -24,32 +24,32 @@ Clipboard Copy - One-click copy to clipboard
 
 Backend (Node.js/Express)
 
-RESTful API - Complete CRUD operations for job descriptions
-MySQL Database - Persistent storage with JSON support
-PDF Generation - Server-side PDF creation with PDFKit
-Template Engine - Three distinct JD templates (Corporate, Startup, Technical)
-ATS Optimization - Applicant Tracking System-friendly formatting
-Skill Mapping - Automatic skill-to-responsibility mapping
-Error Handling - Comprehensive error management
+RESTful API - Complete CRUD operations for job descriptions  
+MySQL Database - Persistent storage with JSON support  
+PDF Generation - Server-side PDF creation with PDFKit  
+Template Engine - Three distinct JD templates (Corporate, Startup, Technical)    
+ATS Optimization - Applicant Tracking System-friendly formatting  
+Skill Mapping - Automatic skill-to-responsibility mapping   
+Error Handling - Comprehensive error management   
 
 
 Tech Stack
 
 Frontend
 
-React 18 - Component-based UI library
-CSS3 - Custom styling with CSS modules
-Local Storage - Client-side data persistence
-Fetch API - HTTP requests to backend
+React 18 - Component-based UI library    
+CSS3 - Custom styling with CSS modules    
+Local Storage - Client-side data persistence    
+Fetch API - HTTP requests to backend    
 
-Backend
+Backend   
 
-Node.js - JavaScript runtime
-Express.js - Web framework
-MySQL - Relational database
-PDFKit - PDF generation library
-mysql2 - MySQL client for Node.js
-dotenv - Environment configuration
+Node.js - JavaScript runtime   
+Express.js - Web framework   
+MySQL - Relational database  
+PDFKit - PDF generation library   
+mysql2 - MySQL client for Node.js   
+dotenv - Environment configuration    
 
 
 
