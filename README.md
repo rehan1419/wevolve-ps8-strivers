@@ -53,7 +53,7 @@ dotenv - Environment configuration
 
 
 
-API Endpoints  
+API Endpoints------------------
 
 Job Description Generation
 
@@ -63,7 +63,7 @@ POST /api/job/save - Save final job description to database
 
 POST /api/job/download-pdf - Download job description as PDF
 
-Draft Management
+Draft Management----------------------
 
 POST /api/job/save-draft - Save a job description draft
 
@@ -73,18 +73,18 @@ GET /api/job/drafts/:id - Get single draft by ID
 
 DELETE /api/job/drafts/:id - Delete a draft
 
-Utility
+Utility----------------------
 
 GET /api/job/all - Get all saved job descriptions
 
 
-Setup Instructions
+Setup Instructions-----------
 
-Prerequisites
+Prerequisites----------  
 
-Node.js (v14 or higher)
-MySQL database
-npm or yarn package manager
+Node.js (v14 or higher)   
+MySQL database    
+npm or yarn package manager    
 
 1. Clone and Install Dependencies
         '''bash
