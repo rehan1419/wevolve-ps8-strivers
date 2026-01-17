@@ -129,6 +129,7 @@ npm or yarn package manager
 
 5. Frontend Setup
     '''bash
+    
         cd ../frontend
 
         npm install
