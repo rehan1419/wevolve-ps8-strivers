@@ -1,0 +1,97 @@
+/* styles.css - Global Styles to add */
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient-alt: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --border-light: rgba(255, 255, 255, 0.3);
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --btn-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --btn-hover: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  --shadow-soft: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --shadow-hard: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --accent-purple: #9f7aea;
+  --accent-blue: #4299e1;
+  --accent-pink: #ed64a6;
+  --accent-green: #48bb78;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+/* Stepper Component - Updated */
+/* Add to your global CSS or Stepper.css */
+.stepper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+  background: #f8fafc;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.step-tab {
+  flex: 1;
+  padding: 16px 20px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.step-tab:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.step-tab.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.step-tab.completed {
+  background: #10b981;
+  color: white;
+  border-color: transparent;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.step-tab.active .step-number {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.step-tab.completed .step-number {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
