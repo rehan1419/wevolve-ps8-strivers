@@ -1,5 +1,5 @@
 // DraftList.jsx 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"; // Added useRef
 import { fetchDrafts, deleteDraft } from "../api/jobApi";
 import "./DraftList.css";
 
@@ -7,6 +7,32 @@ export default function DraftList({ onLoadDraft }) {
   const [drafts, setDrafts] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sortBy, setSortBy] = useState("newest");
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  
+  // Add ref for dropdown container
+  const dropdownRef = useRef(null);
+  const sortButtonRef = useRef(null);
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        showSortDropdown &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        sortButtonRef.current &&
+        !sortButtonRef.current.contains(event.target)
+      ) {
+        setShowSortDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSortDropdown]);
 
   const loadDrafts = async () => {
     setLoading(true);
@@ -42,6 +68,24 @@ export default function DraftList({ onLoadDraft }) {
     }
   };
 
+  // Sort drafts based on selected criteria
+  const sortDrafts = (draftsList) => {
+    const sorted = [...draftsList];
+    
+    switch (sortBy) {
+      case "newest":
+        return sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      case "oldest":
+        return sorted.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      case "title":
+        return sorted.sort((a, b) => 
+          (a.job_title || "").localeCompare(b.job_title || "")
+        );
+      default:
+        return sorted;
+    }
+  };
+
   const filteredDrafts = drafts.filter(draft => {
     const searchTerm = search.toLowerCase();
     return (
@@ -51,6 +95,9 @@ export default function DraftList({ onLoadDraft }) {
       draft.culture?.toLowerCase().includes(searchTerm)
     );
   });
+
+  // Apply sorting to filtered drafts
+  const sortedAndFilteredDrafts = sortDrafts(filteredDrafts);
 
   // Format date as shown in image: "17 Jan 2026, 07:58 pm"
   const formatDate = (dateString) => {
@@ -72,7 +119,7 @@ export default function DraftList({ onLoadDraft }) {
         <h2>Saved Drafts</h2>
       </div>
 
-      {/* Search and Refresh */}
+      {/* Search and Action Buttons */}
       <div className="search-wrapper">
         <div className="search-container">
           <span className="search-icon">🔍</span>
@@ -95,33 +142,89 @@ export default function DraftList({ onLoadDraft }) {
           )}
         </div>
         
-        <button
-          className="refresh-button"
-          onClick={loadDrafts}
-          disabled={loading}
-        >
-          {loading ? (
-            <>
-              <span className="spinner">⟳</span>
-              Refreshing...
-            </>
-          ) : (
-            <>
-              <span>⟳</span>
-              Refresh
-            </>
-          )}
-        </button>
+        {/* Action Buttons - Sort and Refresh side by side */}
+        <div className="action-buttons">
+          {/* Sort by button */}
+          <div className="sort-container" ref={dropdownRef}>
+            <button
+              ref={sortButtonRef}
+              className="action-button sort-button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowSortDropdown(!showSortDropdown);
+              }}
+            >
+              Sort by
+            </button>
+            
+            {showSortDropdown && (
+              <div 
+                className="sort-dropdown"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className={`sort-option ${sortBy === "newest" ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSortBy("newest");
+                    setShowSortDropdown(false);
+                  }}
+                >
+                  Newest first
+                </button>
+                <button 
+                  className={`sort-option ${sortBy === "oldest" ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSortBy("oldest");
+                    setShowSortDropdown(false);
+                  }}
+                >
+                  Oldest first
+                </button>
+                <button 
+                  className={`sort-option ${sortBy === "title" ? "active" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSortBy("title");
+                    setShowSortDropdown(false);
+                  }}
+                >
+                  Title A-Z
+                </button>
+              </div>
+            )}
+          </div>
+          
+          {/* Refresh button */}
+          <button
+            className="action-button refresh-button"
+            onClick={loadDrafts}
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span className="spinner">⟳</span>
+                Refreshing...
+              </>
+            ) : (
+              <>
+                <span>⟳</span>
+                Refresh
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Drafts List */}
-      {filteredDrafts.length === 0 ? (
+      {sortedAndFilteredDrafts.length === 0 ? (
         <div className="empty-state">
           <p>{search ? "No drafts found matching your search." : "No drafts saved yet."}</p>
         </div>
       ) : (
         <div className="drafts-grid">
-          {filteredDrafts.map((draft) => (
+          {sortedAndFilteredDrafts.map((draft) => (
             <div key={draft.id} className="draft-card">
               <h3 className="draft-title">
                 {draft.job_title || "Untitled Draft"}

@@ -1,5 +1,4 @@
-/* DraftList.css - Updated Colors */
-/* DraftList.css - Fixed Layout */
+
 .draft-list-container {
   max-width: 900px;
   margin: 0 auto;
@@ -251,4 +250,209 @@
   .action-button {
     width: 100%;
   }
+}
+
+.sort-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+.sort-button {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sort-button:hover {
+  background-color: #e5e5e5;
+}
+
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.sort-container:hover .sort-dropdown {
+  display: block;
+}
+
+.sort-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sort-option:hover {
+  background-color: #f5f5f5;
+}
+
+.sort-option.active {
+  background-color: #e8f4ff;
+  color: #0066cc;
+}
+
+
+
+
+/* Container for action buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Space between sort and refresh buttons */
+  align-items: center;
+}
+
+/* Base action button style (applies to both sort and refresh) */
+.action-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.action-button:hover {
+  background-color: #e5e5e5;
+}
+
+.action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Sort button specific */
+.sort-button {
+  position: relative;
+}
+
+/* Sort dropdown */
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.sort-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.sort-option:hover {
+  background-color: #f5f5f5;
+}
+
+.sort-option.active {
+  background-color: #e8f4ff;
+  color: #0066cc;
+}
+
+/* Refresh button spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+/* Update the sort dropdown styles */
+.sort-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+.sort-button {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sort-button:hover {
+  background-color: #e5e5e5;
+}
+
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  min-width: 150px;
+  margin-top: 4px;
+  display: block; /* Changed from display: none */
+}
+
+/* Remove the hover-based display rule since we're controlling it via React state */
+/* .sort-container:hover .sort-dropdown {
+  display: block;
+} */
+
+.sort-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sort-option:hover {
+  background-color: #f5f5f5;
+}
+
+.sort-option.active {
+  background-color: #e8f4ff;
+  color: #0066cc;
+}
+
+/* Also update the newer sort styles to remove hover-based display */
+.action-buttons .sort-dropdown {
+  display: block; /* Override any hover-based rules */
 }

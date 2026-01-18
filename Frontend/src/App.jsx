@@ -8,6 +8,7 @@ import Step2Skills from "./components/Step2Skills";
 import Step3Culture from "./components/Step3Culture";
 import Preview from "./components/Preview";
 import DraftList from "./components/DraftList";
+import LivePreview from "./components/LivePreview";
 
 export default function App() {
   const [step, setStep] = useState(0);
@@ -141,7 +142,7 @@ export default function App() {
   };
 
   return (
-    <div className="container" style={{ maxWidth: "1000px", margin: "0 auto", padding: "20px" }}>
+    <div className="container" style={{ maxWidth: "1400px", margin: "0 auto", padding: "20px" }}>
       {showHome ? (
         <Home onStart={() => setShowHome(false)} />
       ) : (
@@ -191,95 +192,114 @@ export default function App() {
             </div>
           )}
 
-          {/* Step Content */}
+          {/* Main Content Area with Two Columns */}
           <div style={{ 
-            background: "#fff", 
-            border: "1px solid #e5e7eb", 
-            borderRadius: "12px", 
-            padding: "30px",
-            marginTop: "20px"
+            display: "grid", 
+            gridTemplateColumns: step < 3 ? "1fr 400px" : "1fr",
+            gap: "32px",
+            marginTop: "20px",
+            alignItems: "flex-start"
           }}>
-            {step === 0 && (
-              <Step1BasicInfo
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )}
-
-            {step === 1 && (
-              <Step2Skills
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )}
-
-            {step === 2 && (
-              <Step3Culture
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )}
-
-            {step === 3 && (
-              <Preview
-                jd={jd}
-                onGenerate={generate}
-                formData={formData}
-                loading={loading}
-              />
-            )}
-
-            {/* Navigation Buttons */}
+            {/* Form Column */}
             <div style={{ 
-              display: "flex", 
-              justifyContent: "space-between", 
-              alignItems: "center",
-              marginTop: "40px",
-              paddingTop: "20px",
-              borderTop: "1px solid #e5e7eb"
+              background: "#fff", 
+              border: "1px solid #e5e7eb", 
+              borderRadius: "12px", 
+              padding: "30px"
             }}>
-              <div>
-                {step > 0 && (
-                  <button
-                    style={buttonStyle}
-                    onClick={() => setStep(step - 1)}
-                  >
-                    ← Back
-                  </button>
-                )}
-                <button
-                  onClick={resetForm}
-                  style={{
-                    ...buttonStyle,
-                    background: "transparent",
-                    color: "#666",
-                  }}
-                >
-                  ↺ Reset
-                </button>
-              </div>
+              {step === 0 && (
+                <Step1BasicInfo
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              )}
 
-              <div>
-                {step < 3 ? (
+              {step === 1 && (
+                <Step2Skills
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              )}
+
+              {step === 2 && (
+                <Step3Culture
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              )}
+
+              {step === 3 && (
+                <Preview
+                  jd={jd}
+                  onGenerate={generate}
+                  formData={formData}
+                  loading={loading}
+                />
+              )}
+
+              {/* Navigation Buttons */}
+              <div style={{ 
+                display: "flex", 
+                justifyContent: "space-between", 
+                alignItems: "center",
+                marginTop: "40px",
+                paddingTop: "20px",
+                borderTop: "1px solid #e5e7eb"
+              }}>
+                <div>
+                  {step > 0 && (
+                    <button
+                      style={buttonStyle}
+                      onClick={() => setStep(step - 1)}
+                    >
+                      ← Back
+                    </button>
+                  )}
                   <button
-                    style={primaryButtonStyle}
-                    onClick={() => {
-                      if (canGoNext()) setStep(step + 1);
+                    onClick={resetForm}
+                    style={{
+                      ...buttonStyle,
+                      background: "transparent",
+                      color: "#666",
                     }}
                   >
-                    Continue →
+                    ↺ Reset
                   </button>
-                ) : (
-                  <button
-                    style={primaryButtonStyle}
-                    onClick={generate}
-                    disabled={loading}
-                  >
-                    {loading ? "⏳ Generating..." : "✨ Generate"}
-                  </button>
-                )}
+                </div>
+
+                <div>
+                  {step < 3 ? (
+                    <button
+                      style={primaryButtonStyle}
+                      onClick={() => {
+                        if (canGoNext()) setStep(step + 1);
+                      }}
+                    >
+                      Continue →
+                    </button>
+                  ) : (
+                    <button
+                      style={primaryButtonStyle}
+                      onClick={generate}
+                      disabled={loading}
+                    >
+                      {loading ? "⏳ Generating..." : "✨ Generate"}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
+
+            {/* Live Preview Column - Only show for steps 0-2 */}
+            {step < 3 && (
+              <div style={{
+                position: "sticky",
+                top: "20px",
+                height: "fit-content"
+              }}>
+                <LivePreview formData={formData} />
+              </div>
+            )}
           </div>
 
           {/* Drafts Section */}
