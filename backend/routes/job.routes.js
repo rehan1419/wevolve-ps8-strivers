@@ -15,7 +15,6 @@ const router = express.Router();
 /**
  * Generate Job Description
  * - Uses skill mapper via templateEngine
- * - Optionally enhances with OpenAI
  * - Saves final JD to MySQL
  */
 router.post("/generate", async (req, res) => {
@@ -41,7 +40,7 @@ router.post("/save", async (req, res) => {
   try {
     const { jobTitle, industry, experienceLevel, keySkills, companyCulture, description } = req.body;
 
-    // 3️⃣ Save final JD to MySQL
+    // Save final JD to MySQL
     await pool.execute(
       `INSERT INTO job_descriptions
        (job_title, industry, experience_level, skills, culture, content)
@@ -56,7 +55,7 @@ router.post("/save", async (req, res) => {
       ]
     );
 
-    // 4️⃣ Send response
+    // Send response
     res.json({ jobDescription: description });
 
   } catch (error) {
@@ -83,7 +82,7 @@ router.post("/download-pdf", (req, res) => {
 });
 
 /**
- * Get all saved Job Descriptions (optional utility)
+ * Get all saved Job Descriptions
  */
 router.get("/all", async (req, res) => {
   try {
