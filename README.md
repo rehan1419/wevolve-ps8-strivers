@@ -83,20 +83,54 @@ Setup Instructions-----------
 Prerequisites 
 
 Node.js (v14 or higher)   
-MySQL database    
+MySQL Server installed and running    
 npm or yarn package manager    
 
-1. Clone and Install Dependencies
-        '''bash
-        git clone [<repository-url>](https://github.com/rehan1419/wevolve-ps8-strivers.git)
+### Quick Start (recommended)
+
+1. Clone the repository and install dependencies once:
+        ```bash
+        git clone https://github.com/rehan1419/wevolve-ps8-strivers.git
+        cd wevolve-ps8-strivers
+        cd backend && npm install && cd ..
+        cd Frontend && npm install && cd ..
+        ```
+
+2. Set your MySQL credentials in `backend/.env`:
+        ```
+        DB_HOST=localhost
+        DB_USER=root
+        DB_PASSWORD=your_mysql_password
+        DB_NAME=jd_generator
+        PORT=5000
+        ```
+
+3. Launch everything with a single click/command:
+    - **Windows:** double-click `run.bat`
+    - **Any OS / terminal:** run `node start.js` from the project root
+
+    This single step will automatically:
+    - Create the `jd_generator` database and `job_descriptions` table if they don't already exist
+    - Start the backend (`http://localhost:5000`) and frontend (`http://localhost:5173`) together
+    - Open the app in your default browser once it's ready
+
+    No manual database setup, no separate terminals, no `cd`-ing into folders required after step 1.
+
+### Manual Setup (alternative)
+
+If you'd rather run things step by step instead of using `start.js`:
+
+1. Install dependencies
+        ```bash
         cd backend
         npm install
+        ```
 
-2. Database Setup
-    Create a MySQL database and run the following SQL to create the required table:
-        '''CREATE DATABASE job_description_db;
+2. Create the database manually:
+        ```sql
+        CREATE DATABASE jd_generator;
 
-        USE job_description_db;
+        USE jd_generator;
 
         CREATE TABLE job_descriptions (
         id INT PRIMARY KEY AUTO_INCREMENT,
@@ -107,36 +141,24 @@ npm or yarn package manager
         culture TEXT,
         content TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );'''
+        );
+        ```
 
-3. Environment Configuration
-    Create a .env file in the root directory:
-        DB_HOST=localhost
-        DB_USER=your_mysql_username
-        DB_PASSWORD=your_mysql_password
-        DB_NAME=job_description_db
-        PORT=5000
+3. Create `backend/.env` (see Quick Start step 2 above for the format)
 
-        '''bash
-            npm install mysql2 dotenv
-            npm list mysql2  #To check mysql 
-
-4. Start the Server
-    '''bash
-    npm run dev
-
+4. Start the backend:
+        ```bash
+        npm run dev
+        ```
     The server will run on http://localhost:5000
 
-5. Frontend Setup
-    '''bash
-
-        cd ../frontend
-
+5. In a separate terminal, start the frontend:
+        ```bash
+        cd Frontend
         npm install
-
         npm run dev
-    
-    Application runs on http://localhost:3000
+        ```
+    Application runs on http://localhost:5173
 
 
 
@@ -160,4 +182,4 @@ Contributing
     2.Create a feature branch (git checkout -b feature/amazing-feature)    
     3.Commit changes (git commit -m 'Add amazing feature')   
     4.Push to branch (git push origin feature/amazing-feature)   
-    5.Open a Pull Request    
+    5.Open a Pull Request
